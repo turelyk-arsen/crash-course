@@ -6,6 +6,10 @@
   <!-- <app-product [product]="products[0]"> </app-product>
   <app-product [product]="products[1]"> </app-product> -->
 
+<app-modal title="Create new product">
+  <app-create-product></app-create-product>
+</app-modal>
+
   <p *ngIf="loading" class="text-center text-lg">Loading ... </p>
 
   <div *ngIf="products$ | async as products">
