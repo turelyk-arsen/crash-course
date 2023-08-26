@@ -8,16 +8,23 @@ import { ProductsService } from './services/products.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit{
-  constructor(private productsService: ProductsService) {}
 
-  ngOnInit(): void {
-    this.productsService.getAll().subscribe(products => {
-      this.products = products
-    })
-    // throw new Error('Method not implemented.');
-  }
+export class AppComponent implements OnInit{
   title = 'Angular crash course';
   // products: IProduct[] = data;
   products: IProduct[] = []
+  loading  = false
+  
+  constructor(private productsService: ProductsService) {}
+
+  ngOnInit(): void {
+    this.loading = true
+    this.productsService.getAll().subscribe(products => {
+      this.products = products
+      this.loading = false
+    })
+    // throw new Error('Method not implemented.');
+  }
+
+
 }
