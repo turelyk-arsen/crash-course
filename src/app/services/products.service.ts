@@ -18,13 +18,13 @@ export class ProductsService {
             params: new HttpParams().append('limit', 10)
         }).pipe(
             delay(1000),
-            tap(products => this.products = products))
+            tap(products => this.products = products.reverse()))
     }
 
     create(product: IProduct): Observable<IProduct> {
         return this.http.post<IProduct>('https://fakestoreapi.com/products', product)
         .pipe(
-            tap(prod => this.products.push(prod))
+            tap(prod => this.products.unshift(prod))
         )
     }
 }
