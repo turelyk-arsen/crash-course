@@ -18,20 +18,20 @@ export class AppComponent implements OnInit{
   // products: IProduct[] = []
   loading  = false
   term = ''
-  products$: Observable<IProduct[]>
+  // products$: Observable<IProduct[]>
 
 
-  constructor(private productsService: ProductsService,
+  constructor(public productsService: ProductsService,
     public modalService: ModalService) {}
 
   ngOnInit(): void {
     this.loading = true
-    this.products$ = this.productsService.getAll().pipe(
-      tap(()=>this.loading = false))
-    // this.productsService.getAll().subscribe(products => {
-    //   this.products = products
-      // this.loading = false
-    // })
+    // this.products$ = this.productsService.getAll().pipe(
+    //   tap(()=>this.loading = false))
+    this.productsService.getAll().subscribe(() => {
+      // this.products = products
+      this.loading = false
+    })
     // throw new Error('Method not implemented.');
   }
 
